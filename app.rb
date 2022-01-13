@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'date'
+require_relative './lib/calendar.rb'
 
 class BirthdayApp < Sinatra::Base
 
@@ -15,10 +16,7 @@ class BirthdayApp < Sinatra::Base
   post '/working'do
     @name = params[:name]
     @month = params[:month]
-    @date = Date.today.strftime("%m")
-    # Calendar.new (month) 
-    # look up in a hash the month 
-    # if logic 
+    @calendar = Calendar.new(params[:month])
     erb:working
   end
 
